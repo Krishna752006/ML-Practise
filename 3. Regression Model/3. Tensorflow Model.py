@@ -22,6 +22,7 @@ x_train, x_test, y_train, y_test = train_test_split(x_scaled, y_scaled, test_siz
 model = keras.models.Sequential([
     keras.Input(shape=(7,)), 
     keras.layers.Dense(128, activation='relu'),
+    keras.layers.Dense(128, activation='relu'),
     keras.layers.Dense(1, activation='linear') 
 ])
 
@@ -39,10 +40,9 @@ model.evaluate(x_test, y_test, batch_size=batch_size, verbose=2)
 predictions = model(x_test)
 pred = scalery.inverse_transform(predictions)
 y_actual = scalery.inverse_transform(y_test)
-print(pred[2])
-print(y_actual[2])
-'''
-model.save("3.keras")
+print(pred[1][0])
+print(y_actual[1][0])
+
+'''model.save("3.keras")
 new_model = keras.models.load_model("3.keras")
-new_model.evaluate(x_test,y_test,verbose = True)
-'''
+new_model.evaluate(x_test,y_test,verbose = True)'''

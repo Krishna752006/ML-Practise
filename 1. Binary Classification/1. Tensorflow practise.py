@@ -20,6 +20,7 @@ x_train, x_test, y_train, y_test = train_test_split(x_scaled, y, test_size=0.2, 
 model = keras.models.Sequential([
     keras.Input(shape=(13,)), 
     keras.layers.Dense(128, activation='relu'),
+    keras.layers.Dense(128, activation='relu'),
     keras.layers.Dense(1, activation='sigmoid') 
 ])
 
@@ -35,13 +36,11 @@ model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, shuffle=True, 
 model.evaluate(x_test, y_test, batch_size=batch_size, verbose=2)
 
 predictions = model(x_test)
-print(predictions[4])
+print(predictions[5][0])
 y_pred = tf.cast(predictions > 0.5, tf.int32)
-print(y_pred[4])
-print(y_test[4])
+print(y_pred[5][0])
+print(y_test[5][0])
 
-'''
-model.save("1.keras")
+'''model.save("1.keras")
 new_model = keras.models.load_model("1.keras")
-new_model.evaluate(x_test,y_test,verbose = True)
-'''
+new_model.evaluate(x_test,y_test,verbose = True)'''
